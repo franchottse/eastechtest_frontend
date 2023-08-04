@@ -1,0 +1,20 @@
+<div [formGroup]="searchForm">
+	<label [attr.for]="searchField.key">{{ searchField.label }}</label>
+
+	<div [ngSwitch]="searchField.controlType">
+		<input
+			*ngSwitchCase="'textbox'"
+			[formControlName]="searchField.key"
+			[id]="searchField.key"
+			[type]="searchField.type"
+		/>
+	</div>
+
+	<div class="errorMessage" *ngIf="!isValid">
+		{{ searchField.label }} is required
+	</div>
+
+	<div class="errorMessage" *ngIf="!isInputValid">
+		{{ searchField.label }} should be a positive number
+	</div>
+</div>

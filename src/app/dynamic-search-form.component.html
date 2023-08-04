@@ -1,0 +1,24 @@
+<div>
+	<form (ngSubmit)="onSubmit()" [formGroup]="searchForm">
+		<div *ngFor="let field of searchField" class="form-row">
+			<app-search-field
+				[searchField]="field"
+				[searchForm]="searchForm"
+			></app-search-field>
+		</div>
+
+		<div class="form-row">
+			<button type="submit" [disabled]="!searchForm.valid">Submit</button>
+		</div>
+	</form>
+
+	<div *ngIf="payload.firstname != ''" class="form-row">
+		<strong
+			>The user is {{ payload.firstname }} {{ payload.lastname }}</strong
+		><br />
+	</div>
+
+	<div *ngIf="errorFound" class="form-row">
+		<strong>Cannot find the user</strong>
+	</div>
+</div>
